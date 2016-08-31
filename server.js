@@ -14,6 +14,8 @@ app.set('view engine','html');
 
 var controllers = require('./controllers');
 
+app.post('/api/users', controllers.users.create);
+
 app.get('/api/users/:user/songs', controllers.usersongs.index);
 app.post('/api/users/:user/songs', controllers.usersongs.create);
 

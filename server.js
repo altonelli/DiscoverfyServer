@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var cronJob = require('cron').CronJob;
 
 var app = express();
 
@@ -22,6 +23,20 @@ app.post('/api/users/:user/songs', controllers.usersongs.create);
 app.get('*', function noRoute (req, res) {
   res.status(404).json("Sorry, nothing was found");
 });
+
+var job = new cronJob({
+  cronTime: '00 05 * * * *',
+  onTick: function(){
+
+    console.log("running maintainence");
+    controllers.maintainence.removeOldSongs();
+
+  },
+  start: false,
+  timeZone: "America/Los_Angeles"
+});
+
+job.start();
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Express server is running on http://localhost:3000/');

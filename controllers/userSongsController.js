@@ -29,7 +29,7 @@ function create(req, res){
     } else {
       db.User.findOne({name: req.body.user}).exec(function(err, user){
         if(err || !user){
-          console.log("Error on saving song to user");
+          console.log("Error on saving song to user", err);
           res.status(500).json("Sorry, song did not save");
         } else {
           user.songs.push(song);

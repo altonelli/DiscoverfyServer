@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/discoverfy');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/discoverfy');
+
 
 var User = require('./user');
 var Song = require('./song');

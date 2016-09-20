@@ -25,7 +25,7 @@ app.get('*', function noRoute (req, res) {
 });
 
 var job = new cronJob({
-  cronTime: '00 05 * * * *',
+  cronTime: '00 00 00 * * *',
   onTick: function(){
 
     console.log("running maintainence");
@@ -36,8 +36,8 @@ var job = new cronJob({
   timeZone: "America/Los_Angeles"
 });
 
-job.start();
 
 app.listen(process.env.PORT || 3000, function () {
+  job.start();
   console.log('Express server is running on http://localhost:3000/');
 });

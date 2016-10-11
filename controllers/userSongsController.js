@@ -4,7 +4,7 @@ function index(req,res){
 
   console.log('in index function: here is the query:',req.query);
 
-  if (req.query == {} ) {
+  if (req.query == {} || req.query == nil ) {
 
     db.User.findOne({name: req.params.user}).exec(function(err,user){
       if (err) {

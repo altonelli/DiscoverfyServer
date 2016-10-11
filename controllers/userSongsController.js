@@ -2,9 +2,7 @@ var db = require('../models');
 
 function index(req,res){
 
-  console.log('in index function: here is the query:',req.query);
-
-  if (req.query == {} || req.query === null ) {
+  if ( Object.keys(req.query).length === 0 ) {
 
     db.User.findOne({name: req.params.user}).exec(function(err,user){
       if (err) {
@@ -20,11 +18,14 @@ function index(req,res){
   } else {
 
     var username = req.params.user;
-    var offset = req.query.offset;
-    var limit = req.query.limit;
+    var offset = parseInt(req.query.offset);
+    var limit = parseInt(req.query.limit);
 
-    db.User.find({ name: username }, { songs: {$slice: [offset,limit]} }).exec(function(err,user){
+    db.User.findOne({ name: username },
+        { songs: { $slice: [offset,limit] } })
+        .exec(function(err,user){
       if (err) {
+        console.log("errr: "+err);
         res.status(500).json('*** Error while finding user for songs GET');
       } else if (!user) {
         res.status(400).json('*** No user was found' + req.params.user);

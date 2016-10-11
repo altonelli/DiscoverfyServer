@@ -39,6 +39,6 @@ var job = new cronJob({
 
 
 app.listen(process.env.PORT || 3000, function () {
-  job.start();
+  // job.start();
   console.log('Express server is running on http://localhost:3000/');
 });

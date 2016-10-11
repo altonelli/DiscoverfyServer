@@ -2,6 +2,8 @@ var db = require('../models');
 
 function index(req,res){
 
+  console.log('in index function: here is the query:',req.query);
+
   if (req.query == {} ) {
 
     db.User.findOne({name: req.params.user}).exec(function(err,user){

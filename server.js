@@ -28,7 +28,7 @@ app.get('/api/*', function noRoute (req, res) {
 });
 
 app.get('/downloads/iphoneimage', function (req,res){
-  res.sendFile('/media/iphone6_2.jpg');
+  res.sendFile('./public/media/iphone6_2.jpg');
 });
 
 app.get('*', function (req,res){

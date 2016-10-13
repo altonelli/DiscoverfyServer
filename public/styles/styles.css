@@ -1,0 +1,56 @@
+html,
+body,
+div,
+h1,
+p,
+a,
+video {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height:100%;
+  color: white;
+}
+
+.title {
+  color: rgba(52, 136, 193, 1);
+  margin-bottom: 20px;
+}
+
+.card{
+  background-color: rgb(66, 175, 229);
+  border-radius: 2px;
+}
+
+.app-button {
+  margin-top: 20px;
+}
+
+.card-column{
+  max-width: 37vh;
+}
+
+.content {
+  top:10%;
+  position: relative;
+  z-index: 2;
+}
+
+.video {
+  position: fixed;
+  z-index: 1;
+  top:50%;
+  left:50%;
+  min-width: 100%;
+  min-height: 100%;
+  width:auto;
+  height:auto;
+  transform: translate(-50%,-50%);
+}
+
+.iphone{
+  max-height: 70vh;
+}

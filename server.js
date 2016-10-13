@@ -7,6 +7,8 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+
 
 var ejs = require('ejs');
 
@@ -21,8 +23,12 @@ app.get('/api/users/:user/songs', controllers.usersongs.index);
 
 app.post('/api/users/:user/songs', controllers.usersongs.create);
 
-app.get('*', function noRoute (req, res) {
+app.get('/api/*', function noRoute (req, res) {
   res.status(404).json("Sorry, nothing was found");
+});
+
+app.get('*', function (req,res){
+  res.render('index.html');
 });
 
 var job = new cronJob({

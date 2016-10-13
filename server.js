@@ -27,6 +27,10 @@ app.get('/api/*', function noRoute (req, res) {
   res.status(404).json("Sorry, nothing was found");
 });
 
+app.get('/downloads/iphoneimage', function (req,res){
+  res.sendFile('/media/iphone6_2.jpg');
+});
+
 app.get('*', function (req,res){
   res.render('index.html');
 });

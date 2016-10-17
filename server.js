@@ -1,3 +1,7 @@
+var env = require("node-env-file");
+env(__dirname + '/.env');
+console.log(process.env.SECRET_KEY);
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var cronJob = require('cron').CronJob;
@@ -52,5 +56,7 @@ var job = new cronJob({
 
 app.listen(process.env.PORT || 3000, function () {
   // job.start();
+  console.log("atempt 2: "+process.env.SECRET_KEY);
+
   console.log('Express server is running on http://localhost:3000/');
 });

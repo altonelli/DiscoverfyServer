@@ -1,16 +1,24 @@
 var env = require("node-env-file");
 env(__dirname + '/.env');
-console.log(process.env.SECRET_KEY);
+
+
+// console.log(process.env.SECRET_KEY);
 
 var express = require("express");
 var bodyParser = require("body-parser");
 var cronJob = require('cron').CronJob;
+
+var request = require('request'); // "Request" library
+var querystring = require('querystring');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/downloads'));
 
@@ -32,6 +40,12 @@ app.post('/api/users/:user/songs', controllers.usersongs.create);
 app.get('/api/*', function noRoute (req, res) {
   res.status(404).json("Sorry, nothing was found");
 });
+
+app.get('/login', controllers.auth.login);
+app.get('/callback', controllers.auth.callback);
+app.post('/token', controllers.auth.tokenSwap);
+app.post('/refresh', controllers.auth.tokenRefresh);
+
 
 app.get('/downloads/iphoneimage', function (req,res){
   res.sendFile('./public/media/iphone6_2.jpg');
@@ -56,7 +70,5 @@ var job = new cronJob({
 
 app.listen(process.env.PORT || 3000, function () {
   // job.start();
-  console.log("atempt 2: "+process.env.SECRET_KEY);
-
   console.log('Express server is running on http://localhost:3000/');
 });

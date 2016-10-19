@@ -12,7 +12,6 @@ function encrypt(text){
 }
 
 function decrypt(text){
-  console.log('decrypt called');
   var decipher = crypto.createDecipher('aes-256-ctr',encryption_secret);
   var dec = decipher.update(text,'hex','utf8');
   dec += decipher.final('utf8');

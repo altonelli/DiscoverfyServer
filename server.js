@@ -39,8 +39,7 @@ app.get('/api/*', function noRoute (req, res) {
   res.status(404).json("Sorry, nothing was found");
 });
 
-app.get('/login', controllers.auth.login);
-app.get('/callback', controllers.auth.callback);
+
 app.post('/swap', controllers.auth.tokenSwap);
 app.post('/refresh', controllers.auth.tokenRefresh);
 

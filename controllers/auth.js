@@ -3,46 +3,20 @@ var request = require('request');
 var util = require('../util');
 var encryption = util.encryption;
 
-var stateKey = 'spotify_auth_state';
-var spotifyEndpoint = 'https://accounts.spotify.com/api/token';
 
 
 var client_id = process.env.CLIENT_ID || null;
 var client_secret = process.env.CLIENT_SECRET || null;
-var ios_redirect_uri = process.env.IOS_REDIRECT_URI || null;
-var local_redirect_uri = process.env.LOCAL_REDIRECT_URI || null;
-var disc_redirect_uri = process.env.DISC_REDIRECT_URI || null;
+var client_redirect_uri = process.env.CLIENT_REDIRECT_URI || null;
+
+var spotifyEndpoint = 'https://accounts.spotify.com/api/token';
 
 var authString = new Buffer(client_id + ':' + client_secret).toString('base64');
 var authHeader = 'Basic ' + authString;
 
 
-function login(req,res){
-  var state = randomString(16);
-  res.cookie(stateKey,state);
-
-  var scope = 'streaming playlist-modify-public playlist-read-private user-top-read user-read-private user-read-email';
-  res.redirect('https://accounts.spotify.com/authorize?'+
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: local_redirect_uri,
-      state: state
-    }));
-}
-
-function callback(req,res){
-  console.log("WOOT WOOT");
-  var code;
-
-
-  res.redirect('discoverfyprotocol://callback');
-}
-
 function tokenSwap(req,res){
-  console.log("tokenSwap checking");
-  // console.log(req);
+
   if ( !req.body || !req.body.hasOwnProperty('code')){
     res.status(550).send("Error: Missing Auth Code. Access Denied");
     return;
@@ -58,18 +32,18 @@ function tokenSwap(req,res){
       headers: {
         'Authorization': authHeader
       },
-      form:formData,
+      form: formData,
       method: 'POST',
       json: true
     };
 
   request(options, function(error,response,body){
     if(error){
-      response.status(500).send("Internal Server Error");
+      res.status(500).send("Internal Server Error");
       return;
     }
     if( response.statusCode != 200 ){
-      console.log(response.statusMessage);
+      console.log(response.statusCode + " : " + response.statusMessage);
       res.status(550).send('Error: Access Denied');
       return;
     }
@@ -81,28 +55,46 @@ function tokenSwap(req,res){
 }
 
 function tokenRefresh(req,res){
-  console.log("tokenRefresh checking");
-  // console.log(req);
 
-
-}
-
-
-
-function randomString(length){
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (var i = 0; i < length; i++){
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  if (!req.body.refresh_token) {
+    res.status(400).send("Error: No token in body");
+    return;
   }
 
-  return text;
+  var refreshToken = encryption.decrypt(req.body.refresh_token);
+  var formData = {
+    grant_type: 'refresh_token',
+    refresh_token: refreshToken
+  };
+  var options = {
+    uri: url.parse(spotifyEndpoint),
+    headers: {
+      'Authorization': authHeader
+    },
+    form: formData,
+    method: 'POST',
+    json: true
+  };
+
+  request(options, function(error,response,body){
+    if (error) {
+      res.status(500).send("Error: Internal server error");
+      return;
+    }
+    if (response.statusCode != 200) {
+      res.status(550).send("Access Denied");
+      return;
+    }
+
+    res.status(200).json(body);
+  });
+
+
+
 }
 
+
 module.exports = {
-  login: login,
-  callback: callback,
   tokenSwap: tokenSwap,
   tokenRefresh:tokenRefresh
 };

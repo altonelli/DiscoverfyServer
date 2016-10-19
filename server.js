@@ -1,16 +1,14 @@
 var env = require("node-env-file");
 env(__dirname + '/.env');
 
-
-// console.log(process.env.SECRET_KEY);
-
 var express = require("express");
 var bodyParser = require("body-parser");
 var cronJob = require('cron').CronJob;
 
-var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+
+
 
 var app = express();
 
@@ -43,7 +41,7 @@ app.get('/api/*', function noRoute (req, res) {
 
 app.get('/login', controllers.auth.login);
 app.get('/callback', controllers.auth.callback);
-app.post('/token', controllers.auth.tokenSwap);
+app.post('/swap', controllers.auth.tokenSwap);
 app.post('/refresh', controllers.auth.tokenRefresh);
 
 

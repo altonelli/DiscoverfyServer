@@ -65,7 +65,5 @@ var job = new cronJob({
 
 app.listen(process.env.PORT || 3000, function () {
   // job.start();
-  console.log("process.env.CLIENT_REDIRECT_URI" + process.env.CLIENT_REDIRECT_URI);
-  console.log("CLIENT_REDIRECT_URI" + CLIENT_REDIRECT_URI);
   console.log('Express server is running on http://localhost:3000/');
 });

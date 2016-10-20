@@ -24,7 +24,7 @@ function tokenSwap(req,res){
 
   var formData = {
     grant_type: "authorization_code",
-    redirect_uri: ios_redirect_uri,
+    redirect_uri: client_redirect_uri,
     code:req.body.code
   };
   var options = {

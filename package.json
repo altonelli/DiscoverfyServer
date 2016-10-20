@@ -5,14 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm install --all",
+    "postinstall": "npm install",
     "start": "node server.js",
   },
   "author": "Arthur Tonelli",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "cookie-parser": "^1.4.3",
     "cron": "^1.1.0",
     "ejs": "^2.5.1",
     "express": "^4.14.0",

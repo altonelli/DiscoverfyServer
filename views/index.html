@@ -3,36 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Arthur Luna Tonelli">
+    <meta name="description" content="Arthur Luna Tonelli is a software engineer specializing in iOS development with experience in fullstack web development.">
+
+    <meta property="og:title" content="Discoverfy">
+    <meta property="og:description" content="Discoverfy is a music app to help listeners find new music from Spotify.">
+
+    <meta property="og:image" content="media/DiscoverfyMeta.jpg">
+    <!-- <meta property="og:image:secure_url" content="media/DiscoverfyMeta.jpg"> -->
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="1500">
+    <meta property="og:image:height" content="1000">
 
     <title>Discoverfy</title>
     <link rel="icon" type="image/png" href="media/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="media/favicon-16x16.png" sizes="16x16" />
 
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
     <script src="/scripts/script.js" charset="utf-8"></script>
 
   </head>
   <body>
     <!-- <video src="media/342514672.mp4" autoplay poster="screenShotOfVideo.jpg"> -->
-    <video class="video" autoplay="autoplay" loop="loop" muted="muted">
+    <!-- <video class="video" autoplay="autoplay" loop="loop" muted="muted">
       <source src="/media/342514672.mp4" type="video/mp4">
-    </video>
+    </video> -->
     <div class="content">
 
       <div class="row title">
-        <h1 class="text-xs-center">Discoverfy</h1>
-        <h3 class="text-xs-center">The funnest way to discover new music.</h3>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-2">
-          <img class="img-fluid iphone pull-sm-right" src="/media/iphone6_2.jpg" alt="" />
+        <div class="col-xs-10 col-xs-offset-1">
+          <h1 class="text-xs-center">Discoverfy</h1>
+          <h3 class="text-xs-center">The funnest way to discover new music.</h3>
         </div>
-        <div class="col-sm-4 card-column">
+      </div>
+      <div class="row main">
+        <div class="col-sm-5 col-lg-3 col-lg-offset-3 col-xs-10 col-xs-offset-1">
+          <img class="img-fluid iphone pull-sm-right m-x-auto d-block" src="/media/DiscoverfyDemo.gif" alt="" />
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-10 col-xs-offset-1 card-column">
 
           <div class="row">
             <div class="card">
@@ -44,25 +57,32 @@
                   Swipe left to remove it.
                 </p>
               </div>
+
             </div>
           </div>
 
-          <div class="row">
-            <a class="pull-sm-right app-button" href="#">
-              <img src="/media/appStoreButton.svg" alt="" />
-            </a>
-          </div>
-
-          <div class="row">
-            <a href="itms-services://?action=download-manifest&url=https://discoverfy.herokuapp.com/app/manifest.plist">
-              <button type="button" name="button">Beta Test</button>
-            </a>
-
+          <div class="row button-row">
+            <div class="col-xs-6">
+              <a class="" href="#">
+                <img class="app-button img-fluid" src="/media/app-apple-coming-soon.png" alt="" />
+                <!-- <img class="app-store-btn" src="/media/appStoreButton.svg" alt="" /> -->
+              </a>
+            </div>
+            <div class="col-xs-6 pull-sm-right">
+              <a href="itms-services://?action=download-manifest&url=https://discoverfy.herokuapp.com/app/manifest.plist">
+                <button type="button" name="button" class="btn btn-primary">Beta Test</button>
+              </a>
+            </div>
           </div>
 
         </div>
       </div>
 
+      <div class="row text-xs-center footer">
+        <div class="col-xs-10 col-xs-offset-1">
+          Questions? Please contact hello@discoverfy.io
+        </div>
+      </div>
     </div>
   </body>
 </html>

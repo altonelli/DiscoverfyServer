@@ -11,19 +11,19 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://www.discoverfy.io/downloads/app/Discoverfy.ipa</string>
+					<string>https://discoverfy.herokuapp.com/downloads/app/Discoverfy.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://www.discoverfy.io/downloads/displayImage.png</string>
+					<string>https://discoverfy.herokuapp.com/downloads/displayImage.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>full-size-image</string>
 					<key>url</key>
-					<string>https://www.discoverfy.io/downloads/fullSizeImage.png</string>
+					<string>https://discoverfy.herokuapp.com/downloads/fullSizeImage.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>

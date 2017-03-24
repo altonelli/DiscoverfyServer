@@ -14,7 +14,8 @@ body {
   height:100%;
   width:100%;
   color: white;
-  background: url("../media/DiscoverfyBackground.jpg") no-repeat center center fixed;
+  background-color: #888888;
+  background: url("../media/DiscoverfyBackgroundSm.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -48,7 +49,24 @@ body {
 
 .button-row{
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+}
+
+.app-store-btn{
+  margin: 0 auto;
+}
+
+/*.fb-btn-wrapper {
+  background-color: rgba(200, 200, 200, 0.7);
+  box-shadow: 0 4px 4px rgba(200, 200, 200, 0.7);
+}*/
+
+a {
+  color: #66a6ff;
+}
+
+a:hover {
+  color: #89f7fe;
 }
 
 .app-button {
@@ -56,6 +74,10 @@ body {
   min-width:125px;
   min-height: 38px;
   margin: 0 auto;
+}
+
+.bottom{
+  margin-bottom: 30px;
 }
 
 /*.card-column{
